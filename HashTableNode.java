@@ -29,4 +29,7 @@ public class HashTableNode{
 		}
 		return false;
 	}
+	public void printNode(){
+		System.out.print("{" + this.key + "," + this.val + "}");
+	}
 }

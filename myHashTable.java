@@ -1,9 +1,10 @@
 /*
-* Hash as a LinkedList
+* HashTable implemented using a LinkedList
 * Author: Madhur Shrimal
 */
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 public class myHashTable{
 	private int SIZE = 20;
 	Object[] table;
@@ -68,7 +69,11 @@ public class myHashTable{
 			if(l == null){
 				System.out.println();
 			}else{
-				System.out.println(l.toString());
+				ListIterator<HashTableNode> itr = l.listIterator();
+				while(itr.hasNext()){
+					itr.next().printNode();
+				}
+				System.out.println();
 			}
 		}
 	}
