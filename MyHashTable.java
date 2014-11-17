@@ -5,11 +5,11 @@
 
 import java.util.LinkedList;
 import java.util.ListIterator;
-public class myHashTable{
+public class MyHashTable{
 	private int SIZE = 20;
 	Object[] table;
 	int nElements;
-	public myHashTable(){
+	public MyHashTable(){
 		table = new Object[SIZE];
 		nElements = 0;
 	}
@@ -78,7 +78,7 @@ public class myHashTable{
 		}
 	}
 	public static void main(String[] args){
-		myHashTable tab = new myHashTable();
+		MyHashTable tab = new MyHashTable();
 		tab.add(1,3);
 		tab.add(22,34);
 		tab.add(23,2);

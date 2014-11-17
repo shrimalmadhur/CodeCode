@@ -2,7 +2,7 @@
 
 import java.util.Arrays;
 
-public class arraysort{
+public class ArraySort{
 
 	public static void main(String[] args){
 		int a[] = {2,1,2,5,7,1,9,3,6,8,8};
