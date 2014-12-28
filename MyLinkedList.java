@@ -1,7 +1,8 @@
+import java.util.Stack;
 public class MyLinkedList{
 	
 	private Node head;
-	private static int SIZE;
+	private int SIZE;
 	public MyLinkedList(){
 		head = null;
 		SIZE = 0;
@@ -94,26 +95,39 @@ public class MyLinkedList{
 	}
 	
 	public boolean isPalindrome(){
-		Node initialNode = head;
-		Node midNode = head;
+		Node curr = head;
 		int num = 0;
+		Stack<Integer> pal = new Stack<Integer>();
 		if(SIZE%2 == 0){
 			num = SIZE/2;
+			for(int i=0; i<num; i++){
+				pal.push(curr.data);
+				curr = curr.next;
+			}
+			//curr = curr.next;
+			for(int i=0;i<num;i++){
+				if(curr.data != pal.pop()){
+					return false;
+				}
+				curr = curr.next;
+			}
+			return true;
 		}else{
 			num = SIZE/2 + 1;
-		}	
-		while(num > 0){
-			midNode = midNode.next;
-			num--;
-		}
-		while(midNode != null){
-			if(midNode.data != initialNode.data){
-				return false;
+			for(int i=0; i<num-1;i++){
+				pal.push(curr.data);
+				curr = curr.next;
 			}
-			midNode = midNode.next;
-			initialNode = initialNode.next;
+			curr = curr.next;
+			for(int i=0; i<num-1;i++){
+				if(curr.data != pal.pop()){
+					return false;
+				}
+				curr = curr.next;
+			}
+			return true;
 		}
-		return true;
+			
 	}
 
 	public void printList(){
@@ -208,16 +222,18 @@ public class MyLinkedList{
 		a.add(1);
 		a.add(3);
 		a.add(6);
-		a.add(9);
-		a.add(9);
+		a.add(3);
+		a.add(1);
 		MyLinkedList b = new MyLinkedList();
 		b.add(9);
 		b.add(3);
+		b.add(3);
 		b.add(9);
-		b.add(1);
 		MyLinkedList result = a.add1(b);
 		a.printList();
 		b.printList();
 		result.printList();
+		System.out.println(a.isPalindrome());
+		System.out.println(b.isPalindrome());
 	}
 }
