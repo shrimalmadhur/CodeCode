@@ -128,32 +128,96 @@ public class MyLinkedList{
 	public MyLinkedList mergeSortLinked(){
 		Node a = head;
 		Node b = head;
-		if(a.next == NULL){
-			return list;
+		if(a.next == null){
+			return this;
 		}
-		while(a != NULL && a.next !=NULL){
-			
-		} 
+		return this;
+		//while(a != NULL && a.next !=NULL){
+		//	
+		//} 
+	}
+	/*
+	** Write code to partition a linked list around a value x, such that all nodes less than x come before alt nodes 
+	** greater than or equal to x.
+	*/	
+	public void partitionList(int val){
+		Node curr = head;
+		Node lim = head;
+		while(curr != null){
+			if(curr.data < val){
+				int temp = curr.data;
+				curr.data = lim.data;
+				lim.data = temp;
+				lim = lim.next;
+			}
+			curr = curr.next;
+		}
 	}
 
+	/*
+	** You have two numbers represented by a linked list, where each node contains a single digit. Thedigits are 
+	** stored in reverse order, such that the 1'sdigit isat the head of the list. 
+	** Write a function that adds the two numbers and returns the sum as a linked list.
+	*/
+	public MyLinkedList add1(MyLinkedList l2){
+		Node curr1 = this.head;
+		Node curr2 = l2.head;
+		MyLinkedList result = new MyLinkedList();
+		int carry = 0;
+		while(curr1 != null && curr2 != null){
+			int temp = curr1.data + curr2.data + carry;
+			if(temp > 9){
+				carry = 1;
+				temp = temp%10;
+			}else{
+				carry = 0;
+			}
+			result.add(temp);
+			curr1 = curr1.next;
+			curr2 = curr2.next;
+		}
+		while(curr1 != null){
+			int temp = curr1.data + carry;
+			if(temp > 9){
+				carry = 1;
+				temp = temp%10;
+			}else{
+				carry = 0;
+			}
+			result.add(temp);
+			curr1 = curr1.next;
+		}
+		while(curr2 != null){
+			int temp = curr2.data + carry;
+			if(temp > 9){
+				carry = 1;
+				temp = temp%10;
+			}else{
+				carry = 0;
+			}
+			result.add(temp);
+			curr2 = curr2.next;
+		}
+		if(carry == 1){
+			result.add(1);
+		}
+		return result;
+	}
 	public static void main(String[] args){
 		MyLinkedList a = new MyLinkedList();
-		a.add(21);
-		a.add(22);
-		//System.out.println(a.getSize());
-		a.add(22);
-		a.add(21);
-		//System.out.println(a.getSize());
-		//a.printList();
-		//a.delete(21);
-		//a.printList();
-		//a.delete(34);
-		//System.out.println(a.getSize());
-		//a.printList();
-		//a.insertAtIndex(4,22222);
-		//a.printList();
-		//a.reverse();
+		a.add(1);
+		a.add(3);
+		a.add(6);
+		a.add(9);
+		a.add(9);
+		MyLinkedList b = new MyLinkedList();
+		b.add(9);
+		b.add(3);
+		b.add(9);
+		b.add(1);
+		MyLinkedList result = a.add1(b);
 		a.printList();
-		System.out.println(a.isPalindrome());
+		b.printList();
+		result.printList();
 	}
 }
